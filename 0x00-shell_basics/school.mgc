@@ -1,2 +1,2 @@
-0	s	SCHOOL School data
+0	string /[Bbc]*	SCHOOL School data
 !:mime School
