@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -mtime 10 | sort
+ls -ART | tail -n 10
