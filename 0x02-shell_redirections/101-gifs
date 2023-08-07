@@ -1,0 +1,2 @@
+#!/bin/bach
+find . -type f -name "*.gif"|rev|cut -f 1 -d "/"|rev |ls -s
