@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -l%2 
+grep -l%2==1 
