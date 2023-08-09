@@ -1,2 +1,2 @@
 #!/bin/bash
-cat -n | grep ' -l%2==1' | cut -f -2 
+cat -n | grep ' -n%2==1' | cut -f -2 
