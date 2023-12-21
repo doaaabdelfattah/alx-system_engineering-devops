@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times
+text="Best School"
+x=1
+while [ $x -le 10 ]
+do
+    if [ $x -eq 10 ]; then
+        echo "Hi"
+    fi
+    echo "$text"
+  x=$((x + 1))
+done
