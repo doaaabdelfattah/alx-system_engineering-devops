@@ -9,3 +9,12 @@ How to use while, until and for loops
 How to use if, else, elif and case condition statements
 How to use the cut command
 What are files and other comparison operators, and how to use them
+
+
+USERNAME > 1
+GROUP_ID > 4
+HOME_DIRECTORY > 6
+COMMAND/SHELL > 7
+USER ID > 3
+PASSWORD > 2
+USER ID INFO > 5
