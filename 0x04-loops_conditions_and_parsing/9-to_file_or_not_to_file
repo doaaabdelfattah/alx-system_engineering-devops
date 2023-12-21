@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script displays The content of the current directory in a list.
+# This script gives you information about the school file.
 file="school"
 if [ -e $file ];
 then
