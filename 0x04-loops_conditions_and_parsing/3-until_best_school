@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 10 times
-text="Best School"
 x=1
 until [ $x -le 10 ]
 do
-  echo "$text"
+  echo "Best School"
   ((x++))
 done
