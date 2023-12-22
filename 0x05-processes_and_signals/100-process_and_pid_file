@@ -6,7 +6,7 @@ echo $$ > /var/run/myscript.pid
 function cleanup()
 {
    rm /var/run/myscript.pid
-   exit
+   exit 1
 }
 # Set up traps outside the loop
 trap 'echo "I hate the kill command"' SIGTERM
