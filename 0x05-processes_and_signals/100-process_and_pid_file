@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script is advanced
+
+# Write the process ID to the pid file
+echo $$ > /var/run/myscript.pid
+function cleanup()
+{
+   rm -rf /var/run/myscript.pid
+   exit
+}
+
+# Set up traps outside the loop
+    trap 'echo "I hate the kill command"' SIGTERM
+    trap 'echo "Y U no love me?!"' SIGINT
+    trap cleanup SIGTERM SIGQUIT
+while true
+do
+    echo "To infinity and beyond"
+    sleep 1
+done
