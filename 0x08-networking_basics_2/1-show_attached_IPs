@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script that configures an Ubuntu server
+
+ifconfig | grep "inet "
