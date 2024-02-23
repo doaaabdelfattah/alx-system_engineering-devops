@@ -1,7 +1,7 @@
 # create file in tmp
 
 file { 'school':
-ensure => present,
+ensure => 'present',
 content => 'I love Puppet',
 path => '/tmp/school',
 mode => '0744',
