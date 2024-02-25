@@ -1,5 +1,5 @@
 #using Puppet to make changes to our configuration file.
-file { '~/.ssh/school':
+file { '/etc/ssh/ssh_config':
     ensure => present,
     mode => '600',
     content => "\
