@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+Host 501006-web-01
+    HostName 54.237.109.172
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
