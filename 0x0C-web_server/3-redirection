@@ -22,4 +22,4 @@ echo 'server {
 sudo nginx -t
 
 # Restart Nginx
-sudo service nginx start
+service nginx restart
