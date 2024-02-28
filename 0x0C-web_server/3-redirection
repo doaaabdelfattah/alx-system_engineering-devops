@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
-# Install Nginx
-sudo apt-get -y update
-sudo apt-get -y install nginx
+# install Nginx
+apt-get update
+apt-get install -y nginx
 
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-
-# Write server block configuration to a file
-
-echo 'server {
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Hello World!" > /etc/nginx/html/index.html
+printf %s "server {
     listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
 
     location /redirect_me {
-        return 301 https://www.youtube.com/;
+        return 301 http://youtube.com/;
     }
-}' | sudo tee /etc/nginx/sites-available/redirect_me > /dev/null
+}" > /etc/nginx/sites-available/default
 
-# Create a symbolic link to enable the new configuration
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
-
-# Test Nginx configuration
-sudo nginx -t
-
-# Restart Nginx
 service nginx restart
