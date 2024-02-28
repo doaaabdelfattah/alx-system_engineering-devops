@@ -28,6 +28,7 @@ printf %s "server {
       root /etc/nginx/html;
       internal;
     }
+
 }" > /etc/nginx/sites-available/default
 
 service nginx restart
