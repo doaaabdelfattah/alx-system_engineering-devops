@@ -1,13 +1,6 @@
-#Install NGINX
+# Install NGINX
 package { 'nginx':
-    provider => 'apt',
-}
-
-# Main file for string
-file { '/var/www/html/index.nginx-debian.html':
-  ensure  => 'file',
-  content => 'Hello World!',
-  mode    => '0744',
+  provider => 'apt',
 }
 
 # Create directory to store HTML files
@@ -21,8 +14,8 @@ file { '/etc/nginx/html/index.html':
   content => "Hello World!\n",
 }
 
-# 301 Redirection file 
-file { '/etc/nginx/sites-enabled/default':
+# 301 Redirection file
+file { '/etc/nginx/sites-available/default':
   ensure  => present,
   mode    => '600',
   content => "\
@@ -39,9 +32,15 @@ server {
 ",
 }
 
-# Restart NGINX 
+# Enable the redirection configuration by creating a symbolic link
+file { '/etc/nginx/sites-enabled/default':
+  ensure => link,
+  target => '/etc/nginx/sites-available/default',
+}
+
+# Restart NGINX
 service { 'nginx':
   ensure    => 'running',
   enable    => true,
-  subscribe => File['/etc/nginx/sites-enabled/default'],
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
