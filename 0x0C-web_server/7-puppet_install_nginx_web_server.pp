@@ -10,6 +10,16 @@ file { '/var/www/html/index.nginx-debian.html':
   mode    => '0744',
 }
 
+# Create directory to store HTML files
+file { '/etc/nginx/html':
+  ensure => directory,
+}
+
+# Create default index.html page
+file { '/etc/nginx/html/index.html':
+  ensure  => file,
+  content => "Hello World!\n",
+}
 
 # 301 Redirection file 
 file { '/etc/nginx/sites-enabled/default':
