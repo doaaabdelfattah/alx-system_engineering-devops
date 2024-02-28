@@ -3,19 +3,20 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+# echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 
 # Write server block configuration to a file
 echo 'server {
     listen 80;
+    listen [::]:80 default_server;
 
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4
     }
-}' | sudo tee /etc/nginx/sites-available/redirect_me >/dev/null
+}' | sudo tee /etc/nginx/sites-available/default >/dev/null
 
 # Create a symbolic link to enable the new configuration
-sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+# sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
 
 # Test Nginx configuration
 sudo nginx -t
