@@ -27,8 +27,8 @@ frontend http-in
     default_backend servers
 backend web_servers
     balance roundrobin
-    server web-01 34.207.211.205 check
-    server web-02 54.162.98.18 check
+    server 501006-web-01 34.207.211.205 check
+    server 501006-web-02 54.162.98.18 check
     " >> /etc/haproxy/haproxy.cfg
 
 
