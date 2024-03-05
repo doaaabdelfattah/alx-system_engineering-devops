@@ -4,8 +4,7 @@ sudo apt install --no-install-recommends software-properties-common
 # adds a Personal Package Archive (PPA) repository to the system
 sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
 apt-get update
-apt install haproxy=2.4.\*
-
+apt install haproxy
 # Create config file
 touch /etc/haproxy/haproxy.cfg
 
@@ -15,15 +14,9 @@ printf %s "global
     log stdout format raw local0
     user haproxy
 
-
-defaults
-    mode http
-    timeout connect 5000ms
-    timeout client 50000ms
-    timeout server 50000ms
-
 frontend http-in
     bind *:80
+    mode http
     default_backend servers
 backend web_servers
     balance roundrobin
