@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# install Nginx
+apt-get update
+apt-get install -y nginx
+
+# create directory to store HTML files that NGINX will serve.
+mkdir /var/www/html
+# create default page when accessing the NGINX server.
+touch /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
+# create error page
+touch /etc/nginx/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# creates a configuration file for NGINX 
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    add_header X-Served-By $HOSTNAME;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+
+    location /redirect_me {
+        return 301 http://youtube.com/;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+      root /etc/nginx/html;
+      internal;
+    }
+
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
