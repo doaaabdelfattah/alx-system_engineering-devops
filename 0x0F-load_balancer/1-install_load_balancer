@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# install the software-properties-common package
+sudo apt install --no-install-recommends software-properties-common
+# adds a Personal Package Archive (PPA) repository to the system
+sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+apt-get update
+apt install haproxy=2.4.\*
+
+# Create config file
+touch /etc/haproxy/haproxy.cfg
+
+printf %s "global
+    daemon
+    maxconn 2000
+    log stdout format raw local0
+    user haproxy
+
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http-in
+    bind *:80
+    default_backend servers
+backend web_servers
+    balance roundrobin
+    server web-01 34.207.211.205 check
+    server web-02 54.162.98.18 check
+    " >> /etc/haproxy/haproxy.cfg
+
+
+sudo service haproxy restart
