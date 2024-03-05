@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # install the software-properties-common package
 sudo apt install --no-install-recommends software-properties-common
 # adds a Personal Package Archive (PPA) repository to the system
