@@ -1,6 +1,6 @@
 # Install NGINX
 package { 'nginx':
-  provider => 'apt',
+  ensure => 'installed',
 }
 
 # Create directory to store HTML files
@@ -17,6 +17,9 @@ file { '/etc/nginx/html/index.html':
 # 301 Redirection file
 file { '/etc/nginx/sites-available/default':
   ensure  => present,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
   mode    => '600',
   content => "\
 server {
