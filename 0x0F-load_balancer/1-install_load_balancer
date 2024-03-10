@@ -4,9 +4,8 @@
 #+    Distributes requests using a round-robin algorithm.
 
 apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-1.8
 apt-get update
-apt-get install -y haproxy=1.8.\*
+apt-get install -y haproxy
 
 echo "ENABLED=1" >> /etc/default/haproxy
 mv /etc/haproxy/haproxy.cfg{,.original}
@@ -33,9 +32,8 @@ frontend my_frontend
 
 backend web_backend
     balance roundrobin
-    server 501006-web-01 34.207.211.205 check
-    server 501006-web-02 54.162.98.18 check
+    server 501006-web-01 34.207.211.205:80 check
+    server 501006-web-02 54.162.98.18:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 service haproxy start
-sudo restart haproxy
