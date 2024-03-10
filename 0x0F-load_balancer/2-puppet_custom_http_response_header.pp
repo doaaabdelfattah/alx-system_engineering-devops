@@ -39,10 +39,9 @@ server {
 ",
 }
 
-# Enable the redirection configuration by creating a symbolic link
-file { '/etc/nginx/sites-enabled/default':
-  ensure => link,
-  target => '/etc/nginx/sites-available/default',
+# Enable the redirection configuration using nginx::resource::vhost
+nginx::resource::vhost { 'default':
+  ensure => present,
 }
 
 # Restart NGINX
