@@ -15,7 +15,7 @@ if __name__ == "__main__":
     response_user = requests.get(f'{user_url}/users/{user_id}')
     # Extracts the JSON content from the HTTP response
     # It return a Python dict that can be accessed
-    user_name = response_user.json()['name']
+    user_name = response_user.json()['username']
 
     user_todo = 'https://jsonplaceholder.typicode.com/todos'
 
