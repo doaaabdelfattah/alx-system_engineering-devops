@@ -1,29 +1,35 @@
 #!/usr/bin/python3
-'''Python script that
-returns information about his todo list progress.
 '''
+return todo list info from fiven id from API
+'''
+import requests
+import sys
+
+
 if __name__ == "__main__":
-    import requests
-    from sys import argv
+    user_url = "https://jsonplaceholder.typicode.com/"
+    user_id = int(sys.argv[1])
 
-    urlUser = 'https://jsonplaceholder.typicode.com/users/' + argv[1]
-    response_name = requests.get(urlUser)
-    name = response_name.json()['name']
+    # Make a GET request to fetch user information
+    response_user = requests.get(f'{user_url}/users/{user_id}')
+    # Extracts the JSON content from the HTTP response
+    # It return a Python dict that can be accessed
+    user_name = response_user.json()['name']
 
-    urlTodo = urlUser + '/todos'
-    response_todos = requests.get(urlTodo)
-    tasks = response_todos.json()
-    total_task = len(tasks)
+    user_todo = 'https://jsonplaceholder.typicode.com/todos'
+
+    # Make a GET request to fetch user's todo list
+    response_Todo = requests.get(f'{user_todo}?userId={user_id}')
+    user_tasks = response_Todo.json()
 
     count = 0
-    for task in tasks:
-        if task['completed'] is True:
+    for data in user_tasks:
+        if data['completed'] is True:
             count += 1
 
-    print("Employee {} is done with tasks({}/{}):".format(name, count,
-          total_task))
+    print("Employee {} is done with tasks({}/{}):".format(user_name,
+          count, len(user_tasks)))
 
-    for task in tasks:
+    for task in user_tasks:
         if task['completed'] is True:
-            task_name = task['title']
-            print("\t {}".format(task_name))
+            print("\t {}".format(task['title']))
