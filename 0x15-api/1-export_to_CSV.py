@@ -2,8 +2,8 @@
 '''
 return todo list info from fiven id from API
 '''
-import requests
 import csv
+import requests
 import sys
 
 if __name__ == "__main__":
