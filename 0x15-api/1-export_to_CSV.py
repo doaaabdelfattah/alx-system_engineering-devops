@@ -7,7 +7,7 @@ import csv
 import sys
 
 if __name__ == "__main__":
-    
+
     user_url = "https://jsonplaceholder.typicode.com/"
     user_id = int(sys.argv[1])
 
@@ -22,11 +22,12 @@ if __name__ == "__main__":
     # Make a GET request to fetch user's todo list
     response_Todo = requests.get(f'{user_todo}?userId={user_id}')
     user_tasks = response_Todo.json()
-    
+
     # Writing result to CSV file
     csv_filename = f"{user_id}.csv"
     with open(csv_filename, mode='w', newline='') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         writer.writerow(['Title', 'Completed'])
-        for task in completed_tasks:
-            writer.writerow([task['title'], 'Yes'])
+        for task in user_tasks:
+            writer.writerow([user_id, user_name, task.get(
+                'completed'), task.get('title')])
