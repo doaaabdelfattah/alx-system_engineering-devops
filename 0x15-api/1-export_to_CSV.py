@@ -24,7 +24,7 @@ if __name__ == "__main__":
     user_tasks = response_Todo.json()
     
     # Writing result to CSV file
-    csv_filename = f"{user_name}_todo.csv"
+    csv_filename = f"{user_id}.csv"
     with open(csv_filename, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Title', 'Completed'])
