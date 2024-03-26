@@ -27,7 +27,6 @@ if __name__ == "__main__":
     csv_filename = f"{user_id}.csv"
     with open(csv_filename, mode='w', newline='') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-        writer.writerow(['Title', 'Completed'])
         for task in user_tasks:
             writer.writerow([user_id, user_name, task.get(
                 'completed'), task.get('title')])
