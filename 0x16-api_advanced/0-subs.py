@@ -19,5 +19,7 @@ def number_of_subscribers(subreddit):
                                  allow_redirects=False)
     # Extracts the JSON content from the HTTP response
     # It return a Python dict that can be accessed
+    if response_user.status_code == 404:
+        return 0
     data = response_user.json()
     return data['data']['subscribers']
