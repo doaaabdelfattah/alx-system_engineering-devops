@@ -9,17 +9,19 @@ def number_of_subscribers(subreddit):
     ''' returns the number of subscribers
     '''
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
+    # url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    # headers = {
+    #     "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    # }
+        # Make a GET request to fetch subreddit information
+    response = requests.get(url, allow_redirects=False)
 
-    # Make a GET request to fetch user information
-    response_user = requests.get(f'{url}',
-                                 headers=headers,
-                                 allow_redirects=False)
-    # Extracts the JSON content from the HTTP response
-    # It return a Python dict that can be accessed
-    if response_user.status_code == 404:
-        return 0
-    data = response_user.json()
-    return data['data']['subscribers']
+    if response.status_code == 200:
+            # Extract JSON content from the response
+        data = response.json()
+        # Extract the number of subscribers from the JSON data
+        subscribers = data['data']['subscribers']
+        return subscribers
+    elif response.status_code == 404:
+            # If subreddit not found, return 0 subscribers
+            return 0
