@@ -14,7 +14,7 @@ def recurse(subreddit, hot_list=[], after=''):
                             allow_redirects=False)
     if response.status_code == 404:
         # If subreddit not found, return 0 subscribers
-        return ('None')
+        return None
 
     # Extract JSON content from the response
     data = response.json()
