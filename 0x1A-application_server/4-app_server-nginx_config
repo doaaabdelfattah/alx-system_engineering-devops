@@ -23,7 +23,7 @@ server {
     }
 
     # Serve AirBnb V3 api
-    location = /api {
+    location  /api {
         proxy_pass http://127.0.0.1:5002/api;
     }
 
